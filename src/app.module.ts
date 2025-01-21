@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './auth-module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { AuthModule } from './auth-module';
     ServeStaticModule.forRoot({   
       rootPath: join(__dirname, '..', 'client'),
     }),
-    AuthModule
+    AuthModule,
+    ProfileModule
   ],
   controllers: [AppController],
   providers: [AppService],

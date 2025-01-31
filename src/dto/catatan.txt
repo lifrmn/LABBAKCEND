@@ -1,2 +1,7 @@
 dto adalah mindelware
 mindelware guard yang digunakannuntuk mendapatkan token
+
+#query seaerc
+    biasanya begini localhost:3000?nama=
+    query bisa digunakan di get dan post
+    tapi ada yang dinamakan body yang hanya bisa digunakan di post

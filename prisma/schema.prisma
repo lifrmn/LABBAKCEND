@@ -14,11 +14,13 @@ datasource db {
 }
 
 model Mahasiswa {
-  nim String @id @db.VarChar(12)
-  nama String
-  kelas String
-  jurusan String
+  nim          String       @id @db.VarChar(12)
+  nama         String
+  kelas        String
+  jurusan      String
   jenis_kelamin Jenis_Kelamin
+  foto_profile String? //menambahkan field foto_profile
+    // Ensure this matches the DTO property
 }
 
 enum Jenis_Kelamin {
@@ -31,12 +33,24 @@ model user {
   username String @unique
   password String 
   role Role @default(USER)
-  foto_profile String? //menambahkan field foto_profile
 
   create_at DateTime @default(now())//membuat field create_at untuk mengetahui kapan data tersebut dibuat
+  foto_profile String? //menambahkan field foto_profile
+
+    
 }
 
 enum Role {
   USER
   ADMIN
 }
+
+// model ProfileMahasiswa {
+//   id        Int     @id @default(autoincrement())
+//   nama      String
+//   nim       String  @unique
+//   jurusan   String
+//   gambar    String? // Kolom gambar (opsional)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }

@@ -21,8 +21,10 @@ import { ProfileModule } from './profile/profile.module';
     }),
     AuthModule,
     ProfileModule
+    // ProfileModule
   ],
   controllers: [AppController],
   providers: [AppService],
+  
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import {  BadRequestException, HttpException, Injectable, InternalServerErrorException, NotFoundException, Param } from '@nestjs/common';
+import {  BadRequestException, HttpException, Injectable, InternalServerErrorException, NotFoundException, Param, UploadedFile } from '@nestjs/common';
 import { CreateMahasiswaDTO } from './dto/create-mahasiswa.dto';
 import prisma from './prisma';
 import { RegisterUserDTO } from './dto/register-user.dto';
@@ -6,14 +6,21 @@ import { hash } from 'crypto';
 import { compareSync, hashSync } from 'bcrypt';
 import { LoginUserDTO } from './dto/login-user.dto';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
+import path, { extname, join } from 'path';
+import { contains } from 'class-validator';
+import { equal } from 'assert';
+
+
+// import { User } from './entity/user.entity';
+// import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
+
 
 @Injectable()
 
 export class AppService {
 
-  constructor(private readonly jwtService: JwtService) {
-    
-  }
+  constructor(private readonly jwtService: JwtService) {}
 async register(data: RegisterUserDTO) {
     try {
       const user = await prisma.user.findFirst({
@@ -44,6 +51,71 @@ async register(data: RegisterUserDTO) {
     throw new  InternalServerErrorException("ada masaalah pada server");
   }
 }
+
+async searchMahasiswa( nim?: string) {
+  try{
+    const mahasiswa = await prisma.mahasiswa.findMany({
+      where:{
+        AND:[
+          // nama?{nama:{contains:nama,mode:'insensitive'}}:{},
+          nim?{nim:{equals:nim}}:{},
+        ],
+      },
+    })
+    return mahasiswa;
+  }catch (error){
+  throw new InternalServerErrorException('ada masalah pada server')
+  }
+}
+
+async uploadMahasiswaFoto(nim: string, file: Express.Multer.File) {  {
+  const mahasiswa = await prisma.mahasiswa.findFirst({ where: { nim } });
+  if (!mahasiswa) throw new NotFoundException('Mahasiswa Tidak Ditemukan');
+
+  if(!existsSync(join(__dirname, '../uploads/') )) {
+    mkdirSync(join( __dirname, '../uploads/'))
+  } 
+  
+  if (mahasiswa.foto_profile) {
+    const filePath = join(__dirname, '../uploads/', mahasiswa.foto_profile);
+    if (existsSync(filePath)) {
+      rmSync(filePath);
+    }
+  }
+  const uploadedFile = join(__dirname, '../uploads/');
+  const fileExt = extname(file.originalname);
+  const baseFilename = mahasiswa.nim;
+  const uniqueSuffix = Date.now() +'-'+ Math.round(Math.random() * 1e9);
+  const filename = `${baseFilename}-${uniqueSuffix}${fileExt}`;
+  const filePath = `${uploadedFile}${filename}`;
+
+  console.log(filePath)
+
+  writeFileSync(filePath, file.buffer);
+  await prisma.mahasiswa.update({
+    where: { nim },
+    data: { foto_profile: filename },
+  });
+
+  return filename;
+
+}
+
+
+
+
+}
+
+async getMahasiswaFoto(nim: string) {
+  const mahasiswa = await prisma.mahasiswa.findFirst({
+      where: { nim },
+  });
+
+  if (!mahasiswa) throw new NotFoundException('Mahasiswa Tidak Ditemukan');
+  return mahasiswa.foto_profile;
+}
+
+
 
 async auth(user_id : number) {
    try {

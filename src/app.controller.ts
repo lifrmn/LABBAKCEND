@@ -57,7 +57,6 @@ getHello() {
   return this.appService.getMahasiswa();//mengembalikan nilai array mahasiswa
 }
 
-
   @Get('mahasiswa/search')
   async searchMahasiswa(
     // @Query('nama')nama?:string,

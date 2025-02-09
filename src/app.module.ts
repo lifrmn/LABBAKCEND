@@ -6,6 +6,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './auth-module';
 import { ProfileModule } from './profile/profile.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { ProfileModule } from './profile/profile.module';
       rootPath: join(__dirname, '..', 'client'),
     }),
     AuthModule,
-    ProfileModule
+    ProfileModule,
+    ChatModule
     // ProfileModule
   ],
   controllers: [AppController],

@@ -2,9 +2,9 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { Prisma } from '@prisma/client';
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import path, { extname } from 'path';
-import { PrismaService } from 'src/prisma.servis';
 import prisma from 'src/prisma';
 import { updatedMahasiswaDTO } from 'src/dto/update-mahasiswa.dto';
+import { PrismaService } from 'src/prisma.servis';
 
 @Injectable()
 export class ProfileService {

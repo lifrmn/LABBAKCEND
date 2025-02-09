@@ -31,10 +31,7 @@ export class ProfileController {
   async getProfile(@Param("id") id: number, @Res() res: Response) {
     const filename = await this.profileService.sendMyFotoProfile(id)
     return res.sendFile('../../uploads/' + filename)
-    }
-
-
-    
-  }
+    }    
+}
   
   

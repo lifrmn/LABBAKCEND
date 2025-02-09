@@ -52,21 +52,38 @@ async register(data: RegisterUserDTO) {
   }
 }
 
-async searchMahasiswa( nim?: string) {
-  try{
-    const mahasiswa = await prisma.mahasiswa.findMany({
-      where:{
-        AND:[
-          // nama?{nama:{contains:nama,mode:'insensitive'}}:{},
-          nim?{nim:{equals:nim}}:{},
-        ],
-      },
-    })
-    return mahasiswa;
-  }catch (error){
-  throw new InternalServerErrorException('ada masalah pada server')
+// async searchMahasiswa( nim?: string) {
+//   try{
+//     const mahasiswa = await prisma.mahasiswa.findMany({
+//       where:{
+//         AND:[
+//           // nama?{nama:{contains:nama,mode:'insensitive'}}:{},
+//           nim?{nim:{equals:nim}}:{},
+//         ],
+//       },
+//     })
+//     return mahasiswa;
+//   }catch (error){
+//   throw new InternalServerErrorException('ada masalah pada server')
+//   }
+// }
+
+async  searchMahasiswa(nim?: string) {
+  try {
+    if (nim) {
+      const mahasiswa = await prisma.mahasiswa.findUnique({
+        where: { nim },
+      });
+      return mahasiswa ? [mahasiswa] : [];
+    }
+    
+    const mahasiswaList = await prisma.mahasiswa.findMany();
+    return mahasiswaList;
+  } catch (error) {
+    throw new InternalServerErrorException('Ada masalah pada server');
   }
 }
+
 
 async uploadMahasiswaFoto(nim: string, file: Express.Multer.File) {  {
   const mahasiswa = await prisma.mahasiswa.findFirst({ where: { nim } });
@@ -100,8 +117,6 @@ async uploadMahasiswaFoto(nim: string, file: Express.Multer.File) {  {
   return filename;
 
 }
-
-
 
 
 }

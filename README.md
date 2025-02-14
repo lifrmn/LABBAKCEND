@@ -1,58 +1,59 @@
 # Project Structure
-📦dist
-📦prisma
- ┗ 📜schema.prisma
-📦src
- ┣ 📂chat
- ┃ ┣ 📂dto
- ┃ ┃ ┣ 📜create-chat.dto.ts
- ┃ ┃ ┗ 📜update-chat.dto.ts
- ┃ ┣ 📂entities
- ┃ ┃ ┗ 📜chat.entity.ts
- ┃ ┣ 📜chat.gateway.spec.ts
- ┃ ┣ 📜chat.gateway.ts
- ┃ ┣ 📜chat.module.ts
- ┃ ┣ 📜chat.service.spec.ts
- ┃ ┗ 📜chat.service.ts
- ┣ 📂dto
- ┃ ┣ 📜catatan.txt
- ┃ ┣ 📜create-mahasiswa.dto.ts
- ┃ ┣ 📜login-user.dto.ts
- ┃ ┣ 📜register-user.dto.ts
- ┃ ┗ 📜update-mahasiswa.dto.ts
- ┣ 📂entity
- ┃ ┗ 📜user.entity.ts
- ┣ 📂profile
- ┃ ┣ 📜profile.controller.spec.ts
- ┃ ┣ 📜profile.controller.ts
- ┃ ┣ 📜profile.module.ts
- ┃ ┣ 📜profile.service.spec.ts
- ┃ ┗ 📜profile.service.ts
- ┣ 📜app.controller.spec.ts
- ┣ 📜app.controller.ts
- ┣ 📜app.module.ts
- ┣ 📜app.service.ts
- ┣ 📜auth-module.ts
- ┣ 📜auth.guard.ts
- ┣ 📜main.ts
- ┣ 📜prisma.servis.ts
- ┣ 📜prisma.ts
- ┗ 📜user.decorator.ts
- 📦test
- ┣ 📜app.e2e-spec.ts
- ┗ 📜jest-e2e.json
- 📦uploads
- ┗ 📜105841106922-1738231723215-614657552.jpg
- ┣ 📜.env
- ┣ 📜.gitignore
- ┣ 📜.prettierrc
- ┣ 📜 nest-cli.json
- ┣ 📜 package-lock.json
- ┣ 📜 package.json
- ┣ 📜 README.md
- ┣ 📜 tsconfig.build.json
- ┗ 📜 tsconfig.json
-
+````
+    📦dist
+    📦prisma
+     ┗ 📜schema.prisma
+    📦src
+     ┣ 📂chat
+     ┃ ┣ 📂dto
+     ┃ ┃ ┣ 📜create-chat.dto.ts
+     ┃ ┃ ┗ 📜update-chat.dto.ts
+     ┃ ┣ 📂entities
+     ┃ ┃ ┗ 📜chat.entity.ts
+     ┃ ┣ 📜chat.gateway.spec.ts
+     ┃ ┣ 📜chat.gateway.ts
+     ┃ ┣ 📜chat.module.ts
+     ┃ ┣ 📜chat.service.spec.ts
+     ┃ ┗ 📜chat.service.ts
+     ┣ 📂dto
+     ┃ ┣ 📜catatan.txt
+     ┃ ┣ 📜create-mahasiswa.dto.ts
+     ┃ ┣ 📜login-user.dto.ts
+     ┃ ┣ 📜register-user.dto.ts
+     ┃ ┗ 📜update-mahasiswa.dto.ts
+     ┣ 📂entity
+     ┃ ┗ 📜user.entity.ts
+     ┣ 📂profile
+     ┃ ┣ 📜profile.controller.spec.ts
+     ┃ ┣ 📜profile.controller.ts
+     ┃ ┣ 📜profile.module.ts
+     ┃ ┣ 📜profile.service.spec.ts
+     ┃ ┗ 📜profile.service.ts
+     ┣ 📜app.controller.spec.ts
+     ┣ 📜app.controller.ts
+     ┣ 📜app.module.ts
+     ┣ 📜app.service.ts
+     ┣ 📜auth-module.ts
+     ┣ 📜auth.guard.ts
+     ┣ 📜main.ts
+     ┣ 📜prisma.servis.ts
+     ┣ 📜prisma.ts
+     ┗ 📜user.decorator.ts
+     📦test
+     ┣ 📜app.e2e-spec.ts
+     ┗ 📜jest-e2e.json
+     📦uploads
+     ┗ 📜105841106922-1738231723215-614657552.jpg
+     ┣ 📜.env
+     ┣ 📜.gitignore
+     ┣ 📜.prettierrc
+     ┣ 📜 nest-cli.json
+     ┣ 📜 package-lock.json
+     ┣ 📜 package.json
+     ┣ 📜 README.md
+     ┣ 📜 tsconfig.build.json
+     ┗ 📜 tsconfig.json
+````
  
 
 
@@ -79,33 +80,39 @@ Untuk memulai proyek Nest.js, ikuti langkah-langkah berikut:
 
 1. **Clone repositori**:
     bash
-    `git clone https://github.com/basohamzah24/LAB-BACKEND`
+   ```
+    git clone https://github.com/basohamzah24/LAB-BACKEND
+   ```
 
     Masuk ke Direktori Proyek
    ` cd latihan-nest`
     
 
-2. **Instal dependensi**:
+3. **Instal dependensi**:
     bash
     npm install
     
 
-3. **Konfigurasi environment**:
-    Salin file `.env.example` menjadi `.env` dan sesuaikan konfigurasi sesuai kebutuhan Anda.
-    contoh :
-    `DATABASE_URL="postgresql://postgres:Frasydi137@103.151.145.175:5432/latihan_nestb?schema=105841106922"`
+4. **Rubah nilai dari DATABASE_URL di file .env**
+    ```
+    DATABASE_URL = [url dari database]
+    ```
 
-4. **Jalankan perintah ini untuk langsung menyinkronkan skema Prisma ke database**:
+5. **Jalankan perintah ini untuk langsung menyinkronkan skema Prisma ke database**:
     bash
-   ` npx prisma db push`
+   ```
+   npx prisma generate
+   ```
 
 
-5. **Jalankan aplikasi**:
+7. **Jalankan aplikasi**:
     bash
-    `npm run start:dev`
-    
-
-Aplikasi sekarang berjalan di `http://localhost:3000`.
+   ```
+    npm run start:dev
+   ```
+   ```
+   Aplikasi sekarang berjalan di `http://localhost:3000`.
+   ```
 
 ## Penjelasan Setiap File dan Direktori
 
@@ -182,7 +189,10 @@ stateDiagram-v2
     FailedLogin --> ResponseFailedLogin : Login gagal, kredensial salah (401)
     ResponseSuccessLogin --> [*]
     ResponseFailedLogin --> [*]
+````
 
+````mermaid
+stateDiagram-v2
     [*] --> InputRegister : Masukkan username, email & password
     InputRegister --> RequestRegister : Kirim POST /register
     RequestRegister --> SuccessRegister : Registrasi berhasil
@@ -191,7 +201,9 @@ stateDiagram-v2
     FailedRegister --> ResponseFailedRegister : Registrasi gagal, data tidak valid (400)
     ResponseSuccessRegister --> [*]
     ResponseFailedRegister --> [*]
-
+````
+````mermaid
+stateDiagram-v2
     [*] --> InputSearchMahasiswa : Masukkan NIM (Opsional)
     InputSearchMahasiswa --> RequestSearchMahasiswa : Kirim GET /mahasiswa
     RequestSearchMahasiswa --> SuccessSearchMahasiswa : Mahasiswa ditemukan (200)

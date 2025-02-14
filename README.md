@@ -151,6 +151,9 @@ stateDiagram-v2
 ````
 
 ````mermaid
+---
+title: Register
+---
 stateDiagram-v2
     [*] --> InputRegister : Masukkan username, email & password
     InputRegister --> RequestRegister : Kirim POST /register
@@ -162,6 +165,9 @@ stateDiagram-v2
     ResponseFailedRegister --> [*]
 ````
 ````mermaid
+---
+title: SearchMahasiswa
+---
 stateDiagram-v2
     [*] --> InputSearchMahasiswa : Masukkan NIM (Opsional)
     InputSearchMahasiswa --> RequestSearchMahasiswa : Kirim GET /mahasiswa

@@ -1,61 +1,60 @@
 # Project Structure
+📦dist
+📦prisma
+ ┗ 📜schema.prisma
+📦src
+ ┣ 📂chat
+ ┃ ┣ 📂dto
+ ┃ ┃ ┣ 📜create-chat.dto.ts
+ ┃ ┃ ┗ 📜update-chat.dto.ts
+ ┃ ┣ 📂entities
+ ┃ ┃ ┗ 📜chat.entity.ts
+ ┃ ┣ 📜chat.gateway.spec.ts
+ ┃ ┣ 📜chat.gateway.ts
+ ┃ ┣ 📜chat.module.ts
+ ┃ ┣ 📜chat.service.spec.ts
+ ┃ ┗ 📜chat.service.ts
+ ┣ 📂dto
+ ┃ ┣ 📜catatan.txt
+ ┃ ┣ 📜create-mahasiswa.dto.ts
+ ┃ ┣ 📜login-user.dto.ts
+ ┃ ┣ 📜register-user.dto.ts
+ ┃ ┗ 📜update-mahasiswa.dto.ts
+ ┣ 📂entity
+ ┃ ┗ 📜user.entity.ts
+ ┣ 📂profile
+ ┃ ┣ 📜profile.controller.spec.ts
+ ┃ ┣ 📜profile.controller.ts
+ ┃ ┣ 📜profile.module.ts
+ ┃ ┣ 📜profile.service.spec.ts
+ ┃ ┗ 📜profile.service.ts
+ ┣ 📜app.controller.spec.ts
+ ┣ 📜app.controller.ts
+ ┣ 📜app.module.ts
+ ┣ 📜app.service.ts
+ ┣ 📜auth-module.ts
+ ┣ 📜auth.guard.ts
+ ┣ 📜main.ts
+ ┣ 📜prisma.servis.ts
+ ┣ 📜prisma.ts
+ ┗ 📜user.decorator.ts
+ 📦test
+ ┣ 📜app.e2e-spec.ts
+ ┗ 📜jest-e2e.json
+ 📦uploads
+ ┗ 📜105841106922-1738231723215-614657552.jpg
+ ┣ 📜.env
+ ┣ 📜.gitignore
+ ┣ 📜.prettierrc
+ ┣ 📜 nest-cli.json
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┣ 📜 README.md
+ ┣ 📜 tsconfig.build.json
+ ┗ 📜 tsconfig.json
 
-latihan-nest/
-│-- dist/
-│-- node_modules/
-│-- prisma/
-│   └── schema.prisma
-│-- src/
-│   ├── chat/
-│   │   ├── dto/
-│   │   │   ├── create-chat.dto.ts
-│   │   │   ├── update-chat.dto.ts
-│   │   ├── entities/
-│   │   │   ├── chat.entity.ts
-│   │   ├── chat.gateway.spec.ts
-│   │   ├── chat.gateway.ts
-│   │   ├── chat.module.ts
-│   │   ├── chat.service.spec.ts
-│   │   ├── chat.service.ts
-│   ├── dto/
-│   │   ├── catatan.txt
-│   │   ├── create-mahasiswa.dto.ts
-│   │   ├── login-user.dto.ts
-│   │   ├── register-user.dto.ts
-│   │   ├── update-mahasiswa.dto.ts
-│   ├── entity/
-│   │   ├── user.entity.ts
-│   ├── profile/
-│   │   ├── profile.controller.spec.ts
-│   │   ├── profile.controller.ts
-│   │   ├── profile.module.ts
-│   │   ├── profile.service.spec.ts
-│   │   ├── profile.service.ts
-│   ├── app.controller.spec.ts
-│   ├── app.controller.ts
-│   ├── app.module.ts
-│   ├── app.service.ts
-│   ├── auth-module.ts
-│   ├── auth.guard.ts
-│   ├── main.ts
-│   ├── prisma.servis.ts
-│   ├── prisma.ts
-│   ├── user.decorator.ts
-│-- test/
-│   ├── app.e2e-spec.ts
-│   ├── jest-e2e.json
-│-- uploads/
-│   ├── 105841106922-1738231723215-614657552.jpg
-│-- .env
-│-- .gitignore
-│-- .prettierrc
-│-- CATATAN
-│-- nest-cli.json
-│-- package-lock.json
-│-- package.json
-│-- README.md
-│-- tsconfig.build.json
-│-- tsconfig.json
+ 
+
 
 Feel free to add more details about each file and directory as needed.
 
@@ -170,20 +169,36 @@ Berikut adalah penjelasan singkat mengenai setiap file dan direktori yang ada di
 
 # Diagram Proyek
 
-````mermaid`
+````mermaid
 ---
 title: Login User
 ---
 stateDiagram-v2
-    Input : { username, password }
-    Request : POST /login
-    Success : { token, user object, status: 201 }
-    Failed : { msg, status: 401 }
+    [*] --> InputLogin : Masukkan username & password
+    InputLogin --> RequestLogin : Kirim POST /login
+    RequestLogin --> SuccessLogin : Kredensial valid
+    RequestLogin --> FailedLogin : Kredensial tidak valid
+    SuccessLogin --> ResponseSuccessLogin : Token dan data user diterima (201)
+    FailedLogin --> ResponseFailedLogin : Login gagal, kredensial salah (401)
+    ResponseSuccessLogin --> [*]
+    ResponseFailedLogin --> [*]
 
-    [*] --> Input
-    Input --> Request
-    Request --> Success : Credentials valid
-    Request --> Failed : Credentials invalid
+    [*] --> InputRegister : Masukkan username, email & password
+    InputRegister --> RequestRegister : Kirim POST /register
+    RequestRegister --> SuccessRegister : Registrasi berhasil
+    RequestRegister --> FailedRegister : Registrasi gagal
+    SuccessRegister --> ResponseSuccessRegister : Token dan data user diterima (201)
+    FailedRegister --> ResponseFailedRegister : Registrasi gagal, data tidak valid (400)
+    ResponseSuccessRegister --> [*]
+    ResponseFailedRegister --> [*]
 
+    [*] --> InputSearchMahasiswa : Masukkan NIM (Opsional)
+    InputSearchMahasiswa --> RequestSearchMahasiswa : Kirim GET /mahasiswa
+    RequestSearchMahasiswa --> SuccessSearchMahasiswa : Mahasiswa ditemukan (200)
+    RequestSearchMahasiswa --> FailedSearchMahasiswa : Mahasiswa tidak ditemukan (401)
+    SuccessSearchMahasiswa --> ResponseSuccessSearchMahasiswa : Data mahasiswa
+    FailedSearchMahasiswa --> ResponseFailedSearchMahasiswa : Mahasiswa tidak ditemukan
+    ResponseSuccessSearchMahasiswa --> [*]
+    ResponseFailedSearchMahasiswa --> [*]
 
-```mermaid`
+````

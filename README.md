@@ -1,7 +1,7 @@
 # Laporan Proyek Nest.js
-    ## PENDAHULUAN
+## PENDAHULUAN
 
-    ```
+```
     Dalam era digital yang terus berkembang, pengembangan aplikasi berbasis web dan real-time menjadi semakin penting. Salah satu teknologi yang banyak digunakan untuk membangun aplikasi backend yang efisien dan skalabel adalah NestJS. NestJS adalah framework berbasis Node.js yang menggunakan TypeScript dan mengadopsi arsitektur modular, sehingga memudahkan pengembang dalam membangun, mengelola, dan memperluas aplikasi.
 
     Lab latihan ini bertujuan untuk memberikan pemahaman mendalam mengenai struktur proyek NestJS serta implementasi berbagai fitur penting, seperti autentikasi, pengelolaan database dengan Prisma, serta komunikasi real-time menggunakan WebSocket. Dengan mengikuti latihan ini, diharapkan peserta dapat memahami konsep dasar pengembangan backend modern serta mampu menerapkan best practices dalam pengembangan aplikasi menggunakan NestJS.
@@ -16,8 +16,8 @@
     5. Menerapkan konsep DTO (Data Transfer Object) dan entity dalam pengelolaan data.
 
     Dengan mengikuti latihan ini, peserta diharapkan memiliki keterampilan dasar dalam pengembangan backend menggunakan NestJS dan mampu mengaplikasikan teknologi ini dalam proyek nyata.
-    ```
-
+```
+```
     ## Struktur file dan penjelasan file
     📦LATIHAN-NEST
     ┃ 📦dist
@@ -78,13 +78,13 @@
     ┃ ┣ 📜package.json (File konfigurasi proyek Node.js)
     ┃ ┣ 📜README.md (File dokumentasi proyek)
     ┃ ┣ 📜tsconfig.build.json (Konfigurasi TypeScript untuk build)
-    ┗ ┗ 📜tsconfig.json (Konfigurasi utama TypeScript)
+    ┗ ┗ 📜tsconfig.json (Konfigurasi utama TypeScript
+```
 
+## Teknologi yang Digunakan di Projek Ini
 
-    ## Teknologi yang Digunakan di Projek Ini
-
-    Projek ini menggunakan beberapa teknologi dan pustaka berikut:
-    ```
+Projek ini menggunakan beberapa teknologi dan pustaka berikut:
+```
     - Node.js: JavaScript runtime yang dibangun di atas mesin V8 Chrome.
     - *NestJS: Framework untuk membangun aplikasi server-side yang efisien dan skalabel.
     - TypeScript: Superset dari JavaScript yang menambahkan tipe statis.
@@ -95,9 +95,9 @@
     - Docker: Platform untuk mengembangkan, mengirim, dan menjalankan aplikasi dalam container.
 
     Pastikan untuk menginstal semua dependensi yang diperlukan dengan menjalankan perintah `npm install` sebelum memulai pengembangan.
-    ```
+```
     ## Diagram proyek
-    ````mermaid
+````mermaid
     ---
     title: Login User
     ---
@@ -110,7 +110,7 @@
         FailedLogin --> ResponseFailedLogin : Login gagal, kredensial salah (401)
         ResponseSuccessLogin --> [*]
         ResponseFailedLogin --> [*]
-    ````
+````
 
     ````mermaid
     ---

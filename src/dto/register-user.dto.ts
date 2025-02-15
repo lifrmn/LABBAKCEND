@@ -25,5 +25,5 @@ export class RegisterUserDTO {
     @IsNotEmpty()
     @Matches(/^\S*$/i)
     @Length(3, 100)
-    pasword: string;
+    password: string;
 }

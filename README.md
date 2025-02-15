@@ -1,6 +1,6 @@
 # Laporan Proyek Nest.js
     ## PENDAHULUAN
-    **PENDAHULUAN**
+
     ```
     Dalam era digital yang terus berkembang, pengembangan aplikasi berbasis web dan real-time menjadi semakin penting. Salah satu teknologi yang banyak digunakan untuk membangun aplikasi backend yang efisien dan skalabel adalah NestJS. NestJS adalah framework berbasis Node.js yang menggunakan TypeScript dan mengadopsi arsitektur modular, sehingga memudahkan pengembang dalam membangun, mengelola, dan memperluas aplikasi.
 

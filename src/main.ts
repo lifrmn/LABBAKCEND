@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DocumentBuilder,SwaggerModule } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
@@ -9,7 +9,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin:"*",
+    origin: "*",
   });
 
   const config = new DocumentBuilder()
@@ -19,11 +19,10 @@ async function bootstrap() {
     .addTag('LATIHAN-1')
     .addBearerAuth()
     .build();
-    
-    const documenFactory = () => SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api-docs', app, documenFactory);
 
-  await app.listen(3000, '0.0.0.0'); // Listen on all network interfaces
+  const documenFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api-docs', app, documenFactory);
+
+  await app.listen(3000, '0.0.0.0');
 }
-
 bootstrap();

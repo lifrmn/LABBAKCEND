@@ -28,6 +28,7 @@ export class ChatGateway {
     const { message, senderId } = data;
     console.log("Received message from client:", message);
     this.server.emit("chat-receive", { message, senderId });
+    console.log("Broadcasted message to clients:", message);
   }
 
   @SubscribeMessage('createChat')
@@ -58,5 +59,7 @@ export class ChatGateway {
   @SubscribeMessage('message')
   handleMessage(client: any, payload: string): void {
     this.server.emit('message', payload);  // Kirim pesan ke semua client
+    console.log("Received message from client:", payload);
+    console.log("Broadcasted message to clients:", payload);
   }
 }

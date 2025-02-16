@@ -1,4 +1,4 @@
-import { UserRole } from "@prisma/client"
+import { Role } from "@prisma/client"
 import { Exclude,Expose } from "class-transformer"
 
 export class User{
@@ -12,6 +12,6 @@ export class User{
     password:string
 
     @Expose()
-    role: UserRole
+    role: Role
 
 }

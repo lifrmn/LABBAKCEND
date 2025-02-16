@@ -28,13 +28,13 @@ enum Jenis_Kelamin {
   P
 }
 
-model user {
+model User {
   id Int @id @default(autoincrement())
   username String @unique
   password String 
   role Role @default(USER)
 
-  create_at DateTime @default(now())//membuat field create_at untuk mengetahui kapan data tersebut dibuat
+  created_at DateTime @default(now())//membuat field create_at untuk mengetahui kapan data tersebut dibuat
   foto_profile String? //menambahkan field foto_profile
 
     

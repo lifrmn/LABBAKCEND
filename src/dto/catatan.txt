@@ -1,0 +1,64 @@
+dto adalah mindelware
+mindelware guard yang digunakannuntuk mendapatkan token
+
+A. query seaerc
+    biasanya begini localhost:3000?nama=
+    query bisa digunakan di get dan post
+    tapi ada yang dinamakan body yang hanya bisa digunakan di post
+
+
+B. Pertemuan 8 websocket
+    perbedaan websocket dengan http
+    http adalah stateless (harus request dan mendapatkan response untuk mengirim data ke klien)
+    http itu lebih berat karena menyimpan sebuah hider di setiap request
+
+    websocket adalah statefull (bisa mengirim data tanpa harus request)
+    websocket lebih ringan karena tidak menyimpan hider di setiap request
+    http dan websocket sama sama menggunakan tcp(transport control protocol)
+    1. udp (user datagram protocol) adalah protokol yang tidak terlalu aman
+    2. tcp (transport control protocol) adalah protokol yang aman yang biasa digunakan di http dan websocket
+
+    web transport adalah teknologi yang menggabungkan http dan websocket, websocket biasa digunakan di aplikasi real time seperti chat, game, dll
+
+    3. untuk menginstall websocket 
+        npm install @nestjs/websockets @nestjs/platform-socket.io socket.io --legacy-peer-deps
+        npm g res untuk membuat sebuah resource
+
+        @WebSocketGateway(
+
+            {
+              cors : {
+                origin : "*"
+              },
+          
+              path : "/socket"
+            }
+          )
+    WebSocketGateway adalah decorator yang digunakan untuk membuat sebuah websocket 
+    cors agar bisa digunakan di semua jaringan
+    path agar bisa digunakan di semua path, agar tidak membebankan aplikasi
+
+    @WebSocketServer()
+    Server : Server;
+   
+    async handleConnection(socket : Socket) {
+       console.log("connected")
+      }
+      async handleDisconnect(socket : Socket) {
+       console.log("disconnected")
+      }
+    web server adalah server yang digunakan untuk mengirim data ke klien
+    async handleConnection ketika ada klien yang terhubung ke server maka akan menampilkan connected
+    jaka tidak maka akan menampilkan disconnected
+
+
+    @SubscribeMessage("chat-send")
+    async sendMessage(socket : Socket, data : any) {
+     const {message} = data
+     this.Server.emit("chat-receive", message)
+    }
+
+    dalam wevsocket menerima ivent dari klien menggunakan @SubscribeMessage("chat-send")
+    kemudian mengirim data ke klien menggunakan this.Server.emit("chat-receive", message)
+      
+    

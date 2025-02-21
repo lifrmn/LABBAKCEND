@@ -5,7 +5,7 @@ export class LoginUserDTO {
   @ApiProperty({
     description: 'Username pengguna untuk login',
     type: String,
-    example: 'BASOHAMZAH',
+    example: 'ALIEF RAYNTO RAHMAN',
   })
   @IsString()
   @IsNotEmpty()
@@ -16,7 +16,7 @@ export class LoginUserDTO {
   @ApiProperty({
     description: 'Password pengguna untuk login',
     type: String,
-    example: 'baso240405',
+    example: 'ALIF1203',
   })
   @IsString()
   @IsNotEmpty({ message: 'Password tidak boleh kosong' })

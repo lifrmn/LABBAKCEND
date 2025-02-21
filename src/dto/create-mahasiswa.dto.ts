@@ -15,7 +15,7 @@ export class CreateMahasiswaDTO {
 
     @ApiProperty({description : "Nama", 
         type : String,
-        example : "BASO HAMZAH"
+        example : "ALIEF RYANTO RAHMAN"
     })
     @IsString()
     @IsNotEmpty()
